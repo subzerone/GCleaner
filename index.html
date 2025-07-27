@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCleaner - Organize Your Photos Effortlessly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(79, 70, 229, 0.3);
+        }
+        .phone-mockup {
+            width: 280px;
+            height: 560px;
+            background: #1f2937;
+            border-radius: 40px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        .swipe-demo {
+            animation: swipeLeft 3s infinite;
+        }
+        @keyframes swipeLeft {
+            0%, 70% { transform: translateX(0); }
+            85% { transform: translateX(-50px); opacity: 0.7; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="appstore.png" alt="App Icon" class="w-10 h-10 rounded-md shadow-md">
+                    <span class="text-xl font-bold text-gray-900">GCleaner</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#features" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Features</a>
+                    <a href="#how-it-works" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">How It Works</a>
+                    <a href="#support" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Support</a>
+                    <a href="privacyPolicy.html" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Privacy Policy</a>
+                </div>
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700">Home</a>
+                <a href="#features" class="block py-2 text-gray-700">Features</a>
+                <a href="#how-it-works" class="block py-2 text-gray-700">How It Works</a>
+                <a href="#support" class="block py-2 text-gray-700">Support</a>
+                <a href="privacyPolicy.html" class="block py-2 text-gray-700">Privacy Policy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg pt-20 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl font-bold mb-6 leading-tight">
+                        Organize Your Photos 
+                        <span class="text-yellow-300">Effortlessly</span>
+                    </h1>
+                    <p class="text-xl mb-8 text-indigo-100">
+                        Swipe through your photo gallery and decide what to keep or delete with simple gestures. Clean up your iPhone storage in minutes, not hours.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
+                            <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download on App Store
+                        </button>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="phone-mockup">
+                        <div class="phone-screen bg-gradient-to-b from-blue-50 to-white">
+                            <div class="p-6 h-full flex flex-col">
+                                <div class="flex justify-between items-center mb-6">
+                                    <button class="text-indigo-600 font-medium">Gallery</button>
+                                    <button class="text-indigo-600 font-medium">Options</button>
+                                </div>
+                                <div class="flex-1 flex items-center justify-center">
+                                    <div class="swipe-demo w-48 h-64 bg-gradient-to-br from-pink-200 to-purple-300 rounded-2xl shadow-lg flex items-center justify-center text-6xl">
+                                        📷
+                                    </div>
+                                </div>
+                                <div class="flex justify-between mt-6">
+                                    <div class="flex items-center text-red-500">
+                                        <span class="text-2xl mr-2">←</span>
+                                        <span class="font-medium">Delete</span>
+                                    </div>
+                                    <div class="flex items-center text-green-500">
+                                        <span class="font-medium">Keep</span>
+                                        <span class="text-2xl ml-2">→</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Powerful Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    GCleaner makes photo management intuitive and fast with gesture-based controls
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">👆</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Swipe to Decide</h3>
+                    <p class="text-gray-600">
+                        Simply swipe left to delete or right to keep. Your decisions are instantly applied to both the app and your iPhone gallery.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">📱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Full Gallery Access</h3>
+                    <p class="text-gray-600">
+                        GCleaner accesses all photos in your gallery, displaying them in a familiar iPhone gallery interface when needed.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">🔄</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Auto-Advance</h3>
+                    <p class="text-gray-600">
+                        After each decision, the next photo automatically appears. No tapping required - just keep swiping through your collection.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">🌍</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Multi-Language</h3>
+                    <p class="text-gray-600">
+                        Switch between Turkish and English languages through the Options menu. All interface text adapts to your preference.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">🗑️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">True Deletion</h3>
+                    <p class="text-gray-600">
+                        When you swipe to delete, photos are removed from both GCleaner and your iPhone's photo library permanently.
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">How GCleaner Works</h2>
+                <p class="text-xl text-gray-600">
+                    Get started in seconds with these simple steps
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Launch App</h3>
+                    <p class="text-gray-600">
+                        Open GCleaner and grant access to your photo library. The app will load all your photos automatically.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Start Swiping</h3>
+                    <p class="text-gray-600">
+                        Photos appear one by one. Swipe left to delete unwanted photos, swipe right to keep the good ones.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Auto-Advance</h3>
+                    <p class="text-gray-600">
+                        After each decision, the next photo automatically appears. No need to tap or navigate manually.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-2xl font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Clean Gallery</h3>
+                    <p class="text-gray-600">
+                        Enjoy your organized photo library with only the photos you want to keep, freeing up valuable storage space.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Support & FAQ</h2>
+                <p class="text-xl text-gray-600">
+                    Get help with GCleaner and find answers to common questions
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">How do I access the gallery view?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    Tap the "Gallery" button in the top left corner of the main screen. This will show all your photos in a familiar iPhone gallery layout, similar to the native Photos app.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">What happens when I swipe left or right?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    Swiping left shows a red "Delete" label and permanently removes the photo from both GCleaner and your iPhone's photo library. Swiping right shows a green "Keep" label and preserves the photo in both locations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">How do I change the language?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    Tap the "Options" button in the top right corner of the main screen. This opens a settings screen where you can choose between Turkish and English. All app text will update to your selected language.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">Can I undo a delete action?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    Currently, GCleaner performs permanent deletions to help you quickly clean up your photo library. Make sure you want to delete a photo before swiping left. We recommend backing up important photos before using the app.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">How do I navigate back to the main screen?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    Use iPhone's standard back gesture - swipe from the left edge of the screen to the right. This will return you to the main photo sorting screen from any other view.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question w-full text-left flex justify-between items-center py-4 border-b border-gray-200" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-medium text-gray-900">What iOS versions are supported?</span>
+                                <span class="faq-icon text-2xl text-indigo-600">+</span>
+                            </button>
+                            <div class="faq-answer hidden pt-4 pb-2">
+                                <p class="text-gray-600">
+                                    GCleaner is designed for modern iOS devices and requires iOS 14.0 or later. The app works best on iPhone models that support the standard back gesture navigation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Need More Help?</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Contact Support</h4>
+                            <p class="text-gray-600 mb-4">
+                                Have a specific question or issue? Our support team is here to help.
+                            </p>
+                            <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                                Email Support
+                            </button>
+                        </div>
+                        <div class="bg-white rounded-xl p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Feature Requests</h4>
+                            <p class="text-gray-600 mb-4">
+                                Have an idea for improving GCleaner? We'd love to hear from you.
+                            </p>
+                            <button class="border-2 border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg hover:bg-indigo-600 hover:text-white transition-colors">
+                                Submit Idea
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="app-icon w-10 h-10 text-lg">📸</div>
+                        <span class="text-xl font-bold">GCleaner</span>
+                    </div>
+                    <p class="text-gray-400">
+                        The fastest way to organize your iPhone photo library with simple swipe gestures.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">App</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Download</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#support" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="privacyPolicy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">App Store</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 GCleaner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.textContent = '−';
+            } else {
+                answer.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Highlight active navigation item
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-indigo-600');
+                link.classList.add('text-gray-700');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-700');
+                    link.classList.add('text-indigo-600');
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965ce49702eadfdf',t:'MTc1MzYyNzIzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
